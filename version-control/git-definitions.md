@@ -1,4 +1,4 @@
-# Git Definitions
+# Git Definitions:
 
 * What is version control?  Why is it useful?
     
