@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pairing Survey</title>
+</head>
+<body>
+  <form action="success.html" method="Post" align="center">
+	<div>
+      <label>Full Name</label><br>
+        <input type="text"  name="full_name">
+    </div>
+    <div>
+      <label>Age</label><br>
+      <input type="number" name="age">
+    </div>
+    <div>
+      <label>Email</label><br>
+      <input type="email" name="email_address">
+    </div>
+    <br>
+	<div>	
+      <label>Please select the module you want to review:</label>
+      <select>
+          <option value="git">Git</option>
+          <option value="gith">GitHub</option>
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+      </select>
+	</div>
+	<br>
+    <div>
+       <textarea name="textarea" rows="5" cols ="50"> Please enter your feedback.</textarea>
+    </div>
+    <br>
+    <div>
+    	<button type="submit">Submit survey</button>
+    </div>
+  </form>
+</body>
+</html>
