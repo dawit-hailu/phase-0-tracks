@@ -2,6 +2,14 @@
   font-size: 0.8em;
 }
 
+#contact-info:hover{
+	background-color: pink;
+}
+#work-experience h3{
+	background-color: blue;
+}
+
+
 .job{
   background-color: #E9E5DC;
   border-radius: 15px;
@@ -11,5 +19,5 @@
 
 .ulist{
   font-size: 0.8em;
-  
+
 }
