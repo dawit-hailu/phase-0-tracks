@@ -1,0 +1,16 @@
+.octopus img{
+	position: fixed;
+	z-index: -1;
+	top: 30px;
+	bottom: 30px;
+	margin: 0 auto;
+	width: 30%
+}
+.hat img{
+	position: relative;
+	width: 30%;
+}
+.glasses img{
+	position: relative;
+	width: 30%;
+}
