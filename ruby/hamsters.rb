@@ -11,3 +11,9 @@ age = gets.chomp.to_i
 if age == "".to_i then age = nil 
 puts age.inspect
 end
+puts "--------HAMPSTER DATA--------"
+puts "Name: #{name}"
+puts "Volume: #{level}"
+puts "Fur Color: #{color}"
+puts "Eligibility: #{adoption}"
+puts "Age:#{age.inspect}" 
