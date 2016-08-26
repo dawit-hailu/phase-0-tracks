@@ -47,27 +47,32 @@ def decrypt(str)
 end
 
 def prompt()
+	puts "\e[H\e[2J"
 	puts "1.Encrypt"
 	puts "2.Dcrypt"
 	puts "3.Exit"
 	puts "Please enter your choice: "
     choice=gets.chomp.to_i
     if choice > 3 || choice < 1 then
-      puts "Please enter a valid input....."
-      puts "\e[H\e[2J"
+      puts "Invalid input.Press enter/return to continue......"
+      gets
       prompt()
     elsif choice == 1
       puts "Enter a password: "
       pwd=gets.chomp
-      puts encrypt pwd
+      puts "\nEncrypted password: #{encrypt pwd}\n"
+      puts "Press enter/return to continue........"
+      gets
       prompt()
     elsif choice == 2
-      Puts "Enter encrypted password: "
+      puts "Enter encrypted password: "
       pwd=gets.chomp
-      puts decrypt pwd
+      puts "\nDecrypted password: #{decrypt pwd}\n"
+      puts "Press enter/return to continue........"
+      gets
       prompt()
     else
-      puts "Thank you! safe encrption"
+      puts "Thank you! safe encrption ....."
   end
 end
 
