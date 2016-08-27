@@ -5,15 +5,13 @@ age = gets.chomp.to_i
 puts "What year were you born?"
 year = gets.chomp.to_i
 age_is_right = (2016-year == age)
-puts age_is_right
 puts "our company cafeteria serves bread. Should we order some for you?"
 garlic=gets.chomp
 likes_garlic=(garlic=="yes")
-puts likes_garlic
 puts "Would you like to enroll in the company's health insurance?"
 insurance=gets.chomp
 opts_insurance = (insurance=="yes")
-result="Results inconclusve."
+result=""
 
 if name == "Drake Cula" || name == "Tu Fang"
 	result = "Definitely a vampire."
