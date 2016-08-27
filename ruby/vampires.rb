@@ -1,10 +1,28 @@
 puts "What is your name: "
-name=gets.chomp
+name = gets.chomp
 puts "How old are you?"
-age=gets.chomp.to_i
+age = gets.chomp.to_i
 puts "What year were you born?"
-year=gets.chomp.to_i
+year = gets.chomp.to_i
+age_is_right = (2016-year == age)
+puts age_is_right
 puts "our company cafeteria serves bread. Should we order some for you?"
 garlic=gets.chomp
+likes_garlic=(garlic=="yes")
+puts likes_garlic
 puts "Would you like to enroll in the company's health insurance?"
-health-insurance=gets.chomp
+insurance=gets.chomp
+opts_insurance = (insurance=="yes")
+result="Results inconclusve."
+
+if name == "Drake Cula" || name == "Tu Fang"
+	result = "Definitely a vampire."
+elsif age_is_right && (likes_garlic || opts_insurance)
+    result = "Probably not a vampire."
+elsif !age_is_right && !likes_garlic && !opts_insurance
+	result = "Almost certainly a vampire."
+else
+	result = "Results inconclusve."
+end
+puts result
+gets
