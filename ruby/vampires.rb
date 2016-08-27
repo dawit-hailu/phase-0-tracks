@@ -28,7 +28,7 @@ end
 puts "How many employees do you want to check"
 n_of_employees=gets.chomp.to_i
 n_of_employees.times do |i|
-	puts "Enter employee number #{i}"
+	puts "Enter employee number #{i+1}"
 	puts tellavampire()
 	gets
 end
