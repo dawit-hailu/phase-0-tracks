@@ -23,7 +23,13 @@ def tellavampire()
 	else
 		result = "Results inconclusve."
 	end
-	result
+    
+    puts "Enter alergies:"
+    do
+    	alergy=gets.chomp
+    until alergy == "done" || alergy == "sunshine"
+
+	alergy == "sunshine" && result == "Probably not a vampire." ? result = "Probably a vampire" : result
 end
 puts "How many employees do you want to check"
 n_of_employees=gets.chomp.to_i
