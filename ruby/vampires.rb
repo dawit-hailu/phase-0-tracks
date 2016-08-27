@@ -25,11 +25,11 @@ def tellavampire()
 	end
     
     puts "Enter alergies:"
-    do
+    alergy = ""
+    until alergy == "done" || alergy == "sunshine" do
     	alergy=gets.chomp
-    until alergy == "done" || alergy == "sunshine"
-
-	alergy == "sunshine" && result == "Probably not a vampire." ? result = "Probably a vampire" : result
+    end
+	alergy == "sunshine" && (result == "Probably not a vampire." || result == "Results inconclusve.") ? result = "Probably a vampire" : result
 end
 puts "How many employees do you want to check"
 n_of_employees=gets.chomp.to_i
@@ -38,3 +38,5 @@ n_of_employees.times do |i|
 	puts tellavampire()
 	gets
 end
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
+gets
