@@ -62,4 +62,4 @@ unless choice == 'none'
      
    puts "Applicant Info"
    applicant_info
-end   
+end 
