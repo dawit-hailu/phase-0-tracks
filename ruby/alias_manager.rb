@@ -64,11 +64,11 @@ until choice == 'quit' do
     new_alias = new_alias.map{|word| word.capitalize}.join(' ')
 
     #Add allias to hash
-    alias_hash[first_name]=new_alias
+    alias_hash[full_name.to_sym]=new_alias
 
     puts "Your new alias is : #{new_alias}"
     puts "\nType 'quit' to quit or press ENTER to continue...."
     choice=gets.chomp
 end
 
-alias_hash.each{ |k,v| puts "#{k} AKA #{v}"
+alias_hash.each{ |k,v| puts "#{k} AKA #{v}"}
