@@ -35,29 +35,33 @@ def vowel? (ch)
     end
 end
 
+choice=""
+until choice == 'quit' do
+    puts "Enter first and last name:"
 
-puts "Enter first and last name:"
+    #get user input
+    full_name=gets.chomp
 
-#get user input
-full_name=gets.chomp
+    #swap first and last name
+    new_alias=swap full_name
 
-#swap first and last name
-new_alias=swap full_name
+    #split alias into characters
+    new_alias = new_alias.split ''
 
-#split alias into characters
-new_alias = new_alias.split ''
+    #map each letter either to the next cosonant or next vowel dependeng on each letter
+    new_alias.map! { |letter| (vowel? letter) ?
+     (next_vowel letter) : (next_consonant letter) }
 
-#map each letter either to the next cosonant or next vowel dependeng on each letter
-new_alias.map! { |letter| (vowel? letter) ?
- (next_vowel letter) : (next_consonant letter) }
+    #join new alias into a string
+    new_alias=new_alias.join ''
 
-#join new alias into a string
-new_alias=new_alias.join ''
+    #split string into words i.e first name and last name
+    new_alias=new_alias.split (' ')
 
-#split string into words i.e first name and last name
-new_alias=new_alias.split (' ')
+    #Capitalize each word and join them into a string
+    new_alias = new_alias.map{|word| word.capitalize}.join(' ')
 
-#Capitalize each word and join them into a string
-new_alias = new_alias.map{|word| word.capitalize}.join(' ')
-
-puts "Your new alias is : #{new_alias}"
+    puts "Your new alias is : #{new_alias}"
+    puts "\nType 'quit' to quit or press ENTER to continue...."
+    choice=gets.chomp
+end
