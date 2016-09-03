@@ -35,6 +35,8 @@ def vowel? (ch)
     end
 end
 
+alias_hash={}
+
 choice=""
 until choice == 'quit' do
     puts "Enter first and last name:"
@@ -61,7 +63,12 @@ until choice == 'quit' do
     #Capitalize each word and join them into a string
     new_alias = new_alias.map{|word| word.capitalize}.join(' ')
 
+    #Add allias to hash
+    alias_hash[first_name]=new_alias
+
     puts "Your new alias is : #{new_alias}"
     puts "\nType 'quit' to quit or press ENTER to continue...."
     choice=gets.chomp
 end
+
+alias_hash.each{ |k,v| puts "#{k} AKA #{v}"
