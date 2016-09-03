@@ -8,7 +8,7 @@ def search_array(arr,integer)
   end
   if !instances.empty?
   	instances.each{|x| puts "#{integer} is at #{x} position in the array"}
-    instances
+    # instances
   else
   	puts "Integer not in the array!"
   end
@@ -32,5 +32,26 @@ def fib(num)
   fib_array
 end
 
-fib 6
 search_array fib(100), 218922995834555169026
+
+def sorted?(arr)
+  for i in 0..arr.length-2
+    if arr[i] > arr[i+1]
+      return false 
+    end
+    end
+  return true
+end
+
+def sort(array)
+  for i in 0 .. array.length-2
+    for j in (i+1) .. array.length-1
+      if array[i] > array[j]
+        temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+      end
+    end
+  end
+  (sorted?(array)) ? array : sort(array)
+end
