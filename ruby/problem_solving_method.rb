@@ -39,19 +39,19 @@ def sorted?(arr)
     if arr[i] > arr[i+1]
       return false 
     end
-    end
+   end
   return true
 end
 
 def sort(array)
   for i in 0 .. array.length-2
-    for j in (i+1) .. array.length-1
-      if array[i] > array[j]
-        temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-      end
+    if array[i] > array[i+1]
+      temp = array[i]
+      array[i] = array[i+1]
+      array[i+1] = temp
     end
   end
   (sorted?(array)) ? array : sort(array)
 end
+
+sort [1,7,2,0,2,10,3]
