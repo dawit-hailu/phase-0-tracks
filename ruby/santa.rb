@@ -5,7 +5,11 @@ class Santa
 	def eat_milk_and_cookies(cookie_type)
 		p "That was a good #{cookie_type}!"
 	end
-	def initialize
+	def initialize(gender,ethnicity)
+		@gender = gender
+		@ethnicity = ethniscity
+		@reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
+		@age = 0
 		p "Initializing Santa instance ..."
 	end
 end
