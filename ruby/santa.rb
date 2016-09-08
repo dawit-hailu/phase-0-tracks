@@ -56,7 +56,7 @@ def print_santas(santas)
 	puts santas.age
 end
 
-99.times do 
+99.times do |i|
 	santas << Santa.new(example_genders.sample, example_ethnicities.sample)
 	rand(140).times do
 		santas[i].celebrate_birthday
