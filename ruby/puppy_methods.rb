@@ -8,9 +8,7 @@ class Puppy
     toy
   end
   def speak(int)
-  	int.times do
-  		p "Woof!"
-  	end
+  	"woof!"*int
   end
   def roll_over
   	puts "*Rolls over*"
