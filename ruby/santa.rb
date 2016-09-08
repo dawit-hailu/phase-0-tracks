@@ -1,6 +1,6 @@
 class Santa
 
-	attr_reader :ethnicity
+	attr_reader :ethnicity, :age
 	attr_accessor :gender
 
 	def speak
@@ -50,7 +50,7 @@ example_genders = ["agender", "female", "bigender", "male", "female", "gender fl
 example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
 
 def print_santas(santas)
-	puts "\e[H\e[2J"
+	# puts "\e[H\e[2J"
 	puts santas.gender
 	puts santas.ethnicity
 	puts santas.age
@@ -66,7 +66,7 @@ end
 choice=""
 until choice == "done"
 	puts "Random santa"
-	print_santas(santas[ran(99)])
+	print_santas(santas[rand(99)])
 	puts "Press ENTER to continue or 'done' to exit"
 	choice = gets.chomp
 end
