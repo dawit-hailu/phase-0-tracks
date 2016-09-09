@@ -32,7 +32,7 @@ class Programmer
 	def initialize
 		puts "Initializing new programmer instance ... "
 		@name = ["Pablo", "Dawit", "Johnnie", "Obama", "Osama"]
-		@language = ["Ruby", "Jdango", "C++", "Java"]
+		@language = ["Ruby", "Django", "C++", "Java"]
 		@beverage = ["Coffe", "Beer", "Energy drink", "Bourbon"]
 		@status = ["stressing!", "Happy", "Confused", "Done", "EMO"]
 		
