@@ -13,5 +13,18 @@ function reversString(str) {
 	newString += str.charAt(i);
 	}
 	return newString;
-}  
-console.log(reversString("Hello"));
+} 
+function checkPalindrom(str) {
+	if (str == reversString(str)) {
+		console.log(str + " is a Palindrome!!");
+	}
+	else {
+		console.log(str + " is not a Palindrome.");
+	}
+}
+var myString = "hello"
+var palString = "madam"
+console.log("When you reverse " + myString + " you get " + reversString(myString));
+checkPalindrom(myString);
+console.log("When you reverse " + palString + "  you get " + reversString(palString));
+checkPalindrom(palString);
