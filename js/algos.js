@@ -35,6 +35,7 @@ function randInt() {
   return counter;
 }
 // spit takes integer and returns an array with [int] words
+
 function spit(numberOfWords) {
   var words = []
   for (var i = numberOfWords; i > 0; i--) {
@@ -47,10 +48,11 @@ function spit(numberOfWords) {
 // Driver code below
 
 for (var i = 0 ; i < 10; i++) {
-  //get random number of words 
+  //get random number array of words 
   words = spit(randInt()+2);
   //print words
   console.log("Array of words: " + words);
+  //print largers word
   console.log("Largest word: " + largest(words) + "\n");
 
 }
