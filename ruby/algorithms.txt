@@ -1,0 +1,15 @@
+#elivator
+-get in elivator
+  -locate the key pad
+  -detect number of rows
+  -detect number of columns
+  -locate bottom-left
+   -until key number is reached
+   	- check key number and press if reached
+   	- move over one key
+   	- once column is reached move up and back -number of columns 
+#put on a tshirt
+-put right/left hand in
+-put left/right hand in
+-put neck in
+-push down
