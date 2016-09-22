@@ -1,0 +1,60 @@
+sqlite> SELECT * FROM city;
+1|1|San Francisco|864816
+2|1|Los Angeles|3971883
+3|1|San Jose|1026908
+4|2|Las Vegas|216961
+5|2|Reno|225221
+6|2|Carson City|55274
+7|3|Portland|583776
+8|3|Hillsboro|91611
+10|4|Aurora|197899
+9|4|Chicago|2695598
+sqlite>UPDATE city SET city_name = "Carson" WHERE city_id=6;
+SELECT * FROM city,state where city.state_id = state.state_id;
+1|1|San Francisco|864816|1|California
+2|1|Los Angeles|3971883|1|California
+3|1|San Jose|1026908|1|California
+4|2|Las Vegas|216961|2|Nevada
+5|2|Reno|225221|2|Nevada
+6|2|Carson|55274|2|Nevada
+7|3|Portland|583776|3|Oregon
+8|3|Hillsboro|91611|3|Oregon
+10|4|Aurora|197899|4|Illinois
+9|4|Chicago|2695598|4|Illinois
+sqlite> SELECT city_name,state_name FROM city,state where city.state_id = state.state_id;
+San Francisco|California
+Los Angeles|California
+San Jose|California
+Las Vegas|Nevada
+Reno|Nevada
+Carson|Nevada
+Portland|Oregon
+Hillsboro|Oregon
+Aurora|Illinois
+Chicago|Illinois
+sqlite> DELETE FROM city WHERE population<100000;
+sqlite> select c.city_name,s.state_name
+   ...> FROM city c
+   ...> JOIN state s
+   ...> ON c.state_id = s.state_id;
+San Francisco|California
+Los Angeles|California
+San Jose|California
+Las Vegas|Nevada
+Reno|Nevada
+Portland|Oregon
+Aurora|Illinois
+Chicago|Illinois
+sqlite>
+sqlite> SELECT c.city_name, s.state_name FROM city c
+   ...> LEFT JOIN state s
+   ...> ON c.state_id=s.state_id;
+San Francisco|California
+Los Angeles|California
+San Jose|California
+Las Vegas|Nevada
+Reno|Nevada
+Portland|Oregon
+Aurora|Illinois
+Chicago|Illinois
+Stateless|
