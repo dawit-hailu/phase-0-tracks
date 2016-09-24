@@ -1,0 +1,27 @@
+SELECT b.name,rv.comment FROM businesses b JOIN reviews rv ON b.id = rv.business_id;
+The Beagle Nightclub|Like something out of a postcard!
+The Beagle Nightclub|I went to The Beagle Review once. Meh
+sqlite> SELECT b.name,rv.comment FROM businesses b JOIN reviews rv ON b.id = rv.business_id;
+Lotus Yoga|Build the reviews table depicted in the second schema. When you create the table, you'll need to declare two foreign keys and a primary key, along with any data needed for the review.
+Amir's Towing|In this case, it makes sense to use a primary key in the reviews table, since each review is a meaningful item in its own right, not just a connection between two other tables
+The Beagle Nightclub|Like something out of a postcard!
+The Beagle Nightclub|I went to The Beagle Review once. Meh
+
+
+SELECT b.name,rv.comment FROM businesses b JOIN reviews rv ON b.id = rv.business_id WHERE b.name = "The Beagle Nightclub";
+
+The Beagle Nightclub|Like something out of a postcard!
+The Beagle Nightclub|I went to The Beagle Review once. Meh
+
+
+SELECT b.name, u.first_name, u.last_name, rv.stars, rv.comment FROM reviews rv JOIN users u ON u.id = rv.user_id JOIN businesses b ON b.id = rv.business_id;
+
+Lotus Yoga|Derrick|Carr|2|Build the reviews table depicted in the second schema. When you create the table, you'll need to declare two foreign keys and a primary key, along with any data needed for the review.
+Amir's Towing|Dawit|Hailu|4|In this case, it makes sense to use a primary key in the reviews table, since each review is a meaningful item in its own right, not just a connection between two other tables
+The Beagle Nightclub|Dawit|Hailu|3|Like something out of a postcard!
+The Beagle Nightclub|Dawit|Hailu|2|I went to The Beagle Review once. Meh
+
+SELECT b.name, u.first_name, u.last_name, rv.stars, rv.comment FROM reviews rv JOIN users u ON u.id = rv.user_id JOIN businesses b ON b.id = rv.business_id WHERE b.name = "The Beagle Nightclub";
+
+The Beagle Nightclub|Dawit|Hailu|3|Like something out of a postcard!
+The Beagle Nightclub|Dawit|Hailu|2|I went to The Beagle Review once. Meh
