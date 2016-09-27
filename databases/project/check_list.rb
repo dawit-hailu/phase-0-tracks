@@ -22,14 +22,14 @@ require 'faker'
 #class User for user profiles
 class User
 	attr_accessor :name, :user_id
-	attr_reader :check_lists
+	attr_reader :task_list
 	def initialize(user_name, id)
 		@user_id = id
-		@check_lists = []
 		@name = user_name
-	
+		@task_list = []
+			
 	end
-
+#this method pushes a new task to the database 
 	def add_task(task, db)
 		db.execute("INSERT INTO tasks (user_id, name, description, start_date) VALUES (?, ?, ?, ?)", [@user_id, task.name, task.description, task.date_added])			
 		get_task_list(db)
@@ -37,17 +37,17 @@ class User
 	end
 
 	def get_task_list(db)
-		@check_lists = []
+		@task_list = []
 		task_list = db.execute("SELECT * FROM tasks WHERE user_id = ?", @user_id)
 		task_list.each do |task|
-			temp = CheckList.new
+			temp = Task.new
 			temp.task_id = task['id']
 			temp.name = task['name']
 			temp.date_completed = task['end_date']
 			temp.date_added = task['start_date']
 			temp.description = task['description']
-			temp.checked = task['marked']
-			@check_lists << temp
+			temp.is_done = task['marked']
+			@task_list << temp
 		
 		end
 	
@@ -55,33 +55,31 @@ class User
 
 end
 
-class CheckList
-	attr_accessor  :task_id, :name, :checked, :date_completed, :date_added, :description
-#intialize CheckList class with current date
-# attr_reader :date_added
-# attr_accessor
+class Task
+	attr_accessor  :task_id, :name, :is_done, :date_completed, :date_added, :description 
+
 	def initialize
 		@task_id
 		@date_added
 		@description
 		@date_completed = nil
 		@name
-		@checked = false
+		@is_done = false
 	
 	end
-
+#this method marks or unmarks a task as completed
 	def mark_unmark(db, date)
-		@checked = !@checked
-		db.execute("UPDATE tasks SET marked = ? WHERE id = ?", [@checked.to_s, @task_id])
-        if @checked
+		@is_done = !@is_done
+		db.execute("UPDATE tasks SET marked = ? WHERE id = ?", [@is_done.to_s, @task_id])
+        if @is_done
         	@date_completed = date
         else
         	@date_completed = nil
         end
-        db.execute("UPDATE tasks SET start_date = ? WHERE id = ?", [@date_completed, @task_id])
+        db.execute("UPDATE tasks SET end_date = ? WHERE id = ?", [@date_completed, @task_id])
 
     end
-
+#displays task info	
 	def display
 		puts "______________________________________________________________________________"
 		puts "Task ID:#{@task_id}"
@@ -90,7 +88,7 @@ class CheckList
 		puts "     Date added    : #{@date_added}"
 		puts "     Date Completed: #{@date_completed}"
 		puts "     Description   : #{@description}"
-		puts "     Task Status   : #{@checked ? "Completed!" : "Incomplete"}"
+		puts "     Task Status   : #{@is_done ? "Completed!" : "Incomplete"}"
 		puts "______________________________________________________________________________"
 
 	end
@@ -135,26 +133,29 @@ def search(objects, name)
 
 end
 
-#this method takes user and index of interst on array of tasks
+#this is a recursive method used to traverse through a users task_array
 def task_viewer(user, index, db)
 
-	count = user.check_lists.length
+	count = user.task_list.length
 	if count != 0
+#this line clears the screen for every prompt
 		puts "\e[H\e[2J"
+#sets next_index to 0 if end of tasks arraay is reached
 		index == (count - 1) ? next_index = 0 : next_index = index + 1
+#sets prev_index to the start of tasks array if index is 0 
 		index == 0 ? prev_index = count-1 : prev_index = index - 1 
 		puts user.name
 		puts "#{index + 1} of #{count}"
-		user.check_lists[index].display
+		user.task_list[index].display
 		puts "'M' mark/unmark 'D' delete 'N' next 'P' privious 'E' exit or 'menu' for main menu"
 		choice = gets.chomp
-		
+#this takes an input from the user on what to display next		
 		if choice == 'N' || choice == 'n'
 			task_viewer(user, next_index, db)
 		elsif choice == 'p' || choice == 'P'
 			task_viewer(user, prev_index, db)
 		elsif choice == 'M' || choice == 'm'
-			user.check_lists[index].mark_unmark(db, todays_date)
+			user.task_list[index].mark_unmark(db, todays_date)
 			task_viewer(user, index, db)
 		elsif choice == 'menu'
 			prompt_user(user, db)
@@ -164,14 +165,14 @@ def task_viewer(user, index, db)
 			puts "are you sure?(y/n):"
 			delete = gets.chomp
 			if delete == 'y' || delete == 'Y'
-				db.execute("DELETE FROM tasks WHERE id = ?", [user.check_lists[index].task_id])
-				user.check_lists.delete_at(index)
+				db.execute("DELETE FROM tasks WHERE id = ?", [user.task_list[index].task_id])
+				user.task_list.delete_at(index)
 				task_viewer(user, 0, db)
 			else
 				task_viewer(user, index, db)
 			end
 		else
-			puts "Invalid entry press ENTER to continue"
+			puts "Invalid entry press ENTER to continue...."
 			gets
 			task_viewer(user, index, db)
 		end
@@ -190,12 +191,12 @@ end
 
 #with the help of the search user this method returns a User class object
 def get_user(users, db)
-	puts "1.Select user"
+	puts "\n1.Select user"
     puts "2.create new user"
     puts "Enter choice:"
     choice = gets.chomp
     if choice == "1"
-
+#get input from the user in order to search users array
 		puts "please enter your name: "
 		name= gets.chomp
 		until search(users, name).class == User do
@@ -205,7 +206,8 @@ def get_user(users, db)
 		current_user = search(users, name)
 		
 	elsif choice == "2"
-	    	current_user = create_new_user(db)
+#return a newly created user
+    	current_user = create_new_user(db)
 	else
 	   	puts "Invalid entry press ENTER to continue...."
 	   	gets
@@ -218,7 +220,7 @@ end
 def prompt_user(user, db)
 	puts "\e[H\e[2J"
 	puts "Hello, #{user.name}"
-	
+#prompt the user what they want to do to their profile	
 	puts "what would you like to do:"
 	puts "1.Add task"
 	puts "2.Search tasks by name"
@@ -226,23 +228,26 @@ def prompt_user(user, db)
 	puts "4.Exit"
 	choice = gets.chomp
 	if choice == '1'
-		task = CheckList.new
+		task = Task.new
 		task.date_added = todays_date
-		task.date_completed = "NA"
 		puts "Task name :"
 		task.name = gets.chomp
 		puts "Task Description:"
 		task.description = gets.chomp
 		user.add_task(task, db)
 		prompt_user(user, db)
+	
 	elsif choice == '2'
 		puts "Enter task name you want to view"
 		name = gets.chomp.to_s
-		until search(user.check_lists, name).class == CheckList || name == 'c' do
+		until search(user.task_list, name).class == Task || name == 'c' do
             puts "couldnt find that task try again or enter 'c' to cancle"
             name = gets.chomp
+            tsk = search(user.task_list, name)
+            indx = user.task_list.index(tsk) if tsk.class  == Task 
 		end
-		name = 'c' ? prompt_user(user, db) : task_viewer(user, user.check_lists.index(search(user.check_lists, name)),db)
+#if the user enters 'c' go back, other-wise search and view task
+		name = 'c' ? prompt_user(user, db) : task_viwer(user, indx, db)
 	elsif choice == '3'
 		task_viewer(user, 0, db)
 	elsif choice == '4'
@@ -305,8 +310,11 @@ end
 users = []
 users_hash = db.execute("SELECT * FROM users")
 users_hash.each do |hash|
+#create a new user for each hash
 	user = User.new(hash['name'], hash['id'])
+	#get task list for each user
 	user.get_task_list(db)
+	#push each user to users array
 	users << user
 end
 users_list = ""
@@ -318,5 +326,4 @@ users.each do |user|
 end
 puts "First 10 users: "
 puts users_list
-
 prompt_user(get_user(users, db), db)
