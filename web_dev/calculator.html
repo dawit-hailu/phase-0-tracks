@@ -1,18 +1,40 @@
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="styles.css">
 <html>
 <head>
 	<title>Calculator</title>
 </head>
 <body>
-	<div id="bckgrd">
+	<div class = container>
 	<div>
-		<form>
-			<a href="text" type="buttorns">
-		</form>
+		<br><input id="result" type="text" width: 60%; rows = 2> 
 	</div>
-	<div></div>
-	<div></div>
-	<div></div>
+	<div class = "block"> 
+		<input class = "number" type="button" name="7" value="7" onclick = "update_display('7')">
+		<input class = "number" type="button" name="8" value="8"onclick = "update_display('8')"> 
+		<input class = "number" type="button" name="9" value="9"onclick = "update_display('9')"> 
 	</div>
+	<div class = "block"> 
+		<input class = "number" type="button" name="4" value="4"onclick = "update_display('4')"> 
+		<input class = "number" type="button" name="5" value="5"onclick = "update_display('5')"> 
+		<input class = "number" type="button" name="6" value="6"onclick = "update_display('6')"> 
+	</div>
+	<div class = "block"> 
+		<input class = "number" type="button" name="1" value="1"onclick = "update_display('1')"> 
+		<input class = "number" type="button" name="2" value="2"onclick = "update_display('2')"> 
+		<input class = "number" type="button" name="3" value="3"onclick = "update_display('3')"> 
+	</div>
+	<div class = "block"> 
+		<input class = "number" type="button" name="0" value="0"onclick = "update_display('0')"> 
+		<input class = "operator" type="button" name="=" value="=" onclick = "calc()"> 
+		<input class = "operator" type="button" name="+" value="+"onclick = "update_display('+')"> 
+	</div>
+	<div class = "block">
+		<input class = "operator" type="button" name="-" value="-" onclick = "update_display('-')"> 
+		<input class = "operator" type="button" name="/" value="/" onclick = "update_display('/')"> 
+		<input class = "operator" type="button" name="X" value="*" onclick = "update_display('*')"> 
+	</div>
+	</div>
+	<script src="client_side_js.js"></script>
 </body>
 </html>
