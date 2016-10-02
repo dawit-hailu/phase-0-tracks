@@ -17,6 +17,10 @@ get '/students/new' do
   erb :new_student
 end
 
+get '/students/search' do
+	erb :searchstudents
+end
+
 # create new students via
 # a form
 post '/students' do
@@ -24,4 +28,9 @@ post '/students' do
   redirect '/'
 end
 
+post '/students/search/result' do
+	@result=db.execute("SELECT * FROM students WHERE name = ?",[params['name']])
+	@result="Student '#{params['name']}' not found in the Database." if @result.length == 0
+	erb :display
+end
 # add static resources
