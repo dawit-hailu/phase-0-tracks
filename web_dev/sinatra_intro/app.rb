@@ -1,6 +1,7 @@
 # require gems
 require 'sinatra'
 require 'sqlite3'
+require 'faker'
 
 db = SQLite3::Database.new("students.db")
 db.results_as_hash = true
@@ -36,6 +37,29 @@ get '/students' do
   end
   response
 end
+
+get '/contacts' do
+  address = ""
+  address << Faker::Address.street_name + " street<br>"
+  address << Faker::Address.city + "<br>"
+  address << Faker::Address.zip
+  address
+end
+
+get '/great_job' do
+  nam = params[:name]
+  if nam 
+    "Good job, #{nam}!"
+  else
+    "Good job!"
+  end
+end
+
+get '/add' do
+  result=params[:a].to_i + params[:b].to_i
+  result.to_s
+end
+
 
 # write a GET route that retrieves
 # a particular student
