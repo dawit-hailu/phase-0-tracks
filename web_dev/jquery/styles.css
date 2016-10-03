@@ -1,0 +1,29 @@
+.container{
+	align-content: center;
+	background-color: #429bf4;
+	width: 250px;
+	height: 300px;
+	padding: 4px;
+	border-radius: 3px;
+}
+#clear{
+	background-color: orange;
+}
+.number, .operator, #clear{
+	
+	width: 75px;
+	padding: 1em;
+	height: 40px;
+	font-size: 1em;
+	border-radius: 4em;
+	border: none;
+}
+#result{
+	font-size: 1em;
+	width: 92%;
+	padding: 2%;
+	border-radius: 1em;
+}
+.block{
+	padding: 5px;
+}
